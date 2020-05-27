@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "405824017802",
+    "firebase_url": "https://telegram3-a1874.firebaseio.com",
+    "project_id": "telegram3-a1874",
+    "storage_bucket": "telegram3-a1874.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:405824017802:android:cd9c9874e17ed246afa473",
+        "android_client_info": {
+          "package_name": "com.proba.telegram3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "405824017802-kegm3pa1b7b02lckf4vahiothudvb2uo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdysVda6S1WnF0IbJwlEWvlUpNYjKX9Q0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "405824017802-kegm3pa1b7b02lckf4vahiothudvb2uo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
