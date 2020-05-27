@@ -9,7 +9,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.proba.telegram3.models.CommonModel
 import com.proba.telegram3.models.User
-
+/*разобрать... */
 lateinit var AUTH: FirebaseAuth
 lateinit var CURRENT_UID: String
 lateinit var REF_DATABASE_ROOT: DatabaseReference
