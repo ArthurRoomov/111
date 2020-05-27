@@ -16,6 +16,10 @@ import com.proba.telegram3.ui.fragments.ChatsFragment
 import com.proba.telegram3.ui.objects.AppDrawer
 import com.proba.telegram3.utilits.*
 import com.theartofdev.edmodo.cropper.CropImage
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 /*Главное активность приложения*/
 
@@ -32,19 +36,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(mBinding.root)
         APP_ACTIVITY = this
         initFirebase()
-        initUser{
-            initContacts()
+        initUser {
+            CoroutineScope(Dispatchers.IO).launch {
+                initContacts()
+            }
             initFields()
             initFunc()
         }
-
-
     }
 
-    private fun initContacts() {
-        if (checkPermission(READ_CONTACTS))
-            showToast("Чтение контакта")
-    }
+
 
     private fun initFunc() {
         /*Функция инициализирует функциональность приложения */
@@ -56,11 +57,11 @@ class MainActivity : AppCompatActivity() {
             replaceActivity(RegisterActivity())
         }
     }
+
     private fun initFields() {
         /*Функция инициализирует переменные */
         mToolbar = mBinding.mainToolbar
         mAppDrawer = AppDrawer(this, mToolbar)
-
     }
 
     override fun onStart() {
@@ -79,7 +80,11 @@ class MainActivity : AppCompatActivity() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (ContextCompat.checkSelfPermission(APP_ACTIVITY, READ_CONTACTS)==PackageManager.PERMISSION_GRANTED){
+        if (ContextCompat.checkSelfPermission(
+                APP_ACTIVITY,
+                READ_CONTACTS
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
             initContacts()
         }
     }
