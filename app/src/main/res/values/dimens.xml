@@ -2,11 +2,14 @@
 <resources>
 
     <!--Margins-->
-    <dimen name="horizontal_margin">16dp</dimen>
-    <dimen name="vertical_margin">16dp</dimen>
+    <dimen name="app_margin">16dp</dimen>
+    <dimen name="app_small_margin">16dp</dimen>
     <dimen name="vertical_large_margin">20dp</dimen>
     <dimen name="between_margin">10dp</dimen>
 
+    <!--Toolbar-->
+    <dimen name="toolbar_image_width">45dp</dimen>
+    <dimen name="toolbar_image_height">45dp</dimen>
 
     <!--TextSize-->
     <dimen name="largeText">20sp</dimen>
@@ -26,5 +29,6 @@
 
     <!--Padding-->
     <dimen name="appPadding">10dp</dimen>
+
 
 </resources>

@@ -5,7 +5,9 @@
     <color name="colorAccent">#FFFFFF</color>
     <color name="colorAccentDark">#dcdcdc</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorMessage">#A1B86B</color>
     <color name="colorGray">#787878</color>
+    <color name="colorBackgroundChat">#6A1E1E</color>
 
 
     <!-- Material DEFAULT colors -->
