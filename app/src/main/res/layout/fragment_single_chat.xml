@@ -29,11 +29,11 @@
         android:textColor="@color/colorBlack"
         android:textColorHint="@color/colorGray"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/image_view"
+        app:layout_constraintEnd_toStartOf="@id/chat_btn_send_message"
         app:layout_constraintStart_toStartOf="parent" />
     
     <ImageView
-        android:id="@+id/image_view"
+        android:id="@+id/chat_btn_send_message"
         android:layout_width="50dp"
         android:layout_height="0dp"
         android:src="@drawable/ic_send"
