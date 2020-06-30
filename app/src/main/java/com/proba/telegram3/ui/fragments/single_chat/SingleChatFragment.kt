@@ -2,8 +2,12 @@ package com.proba.telegram3.ui.fragments.single_chat
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.ChildEventListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.proba.telegram3.R
+import com.proba.telegram3.database.*
 import com.proba.telegram3.models.CommonModel
 import com.proba.telegram3.models.UserModel
 import com.proba.telegram3.ui.fragments.BaseFragment
@@ -22,8 +26,8 @@ class SingleChatFragment(private val contact: CommonModel) :
     private lateinit var mRefMessages: DatabaseReference
     private lateinit var mAdapter: SingleChatAdapter
     private lateinit var mRecyclerView: RecyclerView
-    private lateinit var mMessagesListener: AppValueEventListener
-    private var mListMessages = emptyList<CommonModel>()
+    private lateinit var mMessagesListener: ChildEventListener
+
 
     override fun onResume() {
         super.onResume()
@@ -34,16 +38,18 @@ class SingleChatFragment(private val contact: CommonModel) :
     private fun initRecycleView() {
         mRecyclerView = chat_recycle_view
         mAdapter = SingleChatAdapter()
-        mRefMessages = REF_DATABASE_ROOT.child(NODE_MESSAGES)
+        mRefMessages = REF_DATABASE_ROOT
+            .child(NODE_MESSAGES)
             .child(CURRENT_UID)
             .child(contact.id)
         mRecyclerView.adapter = mAdapter
-        mMessagesListener = AppValueEventListener { dataSnapshot ->
-            mListMessages = dataSnapshot.children.map { it.getCommonModel() }
-            mAdapter.setList(mListMessages)
+
+        mMessagesListener = AppChildEventListener {
+            mAdapter.addItem(it.getCommonModel())
             mRecyclerView.smoothScrollToPosition(mAdapter.itemCount)
         }
-        mRefMessages.addValueEventListener(mMessagesListener)
+
+        mRefMessages.addChildEventListener(mMessagesListener)
     }
 
     private fun initToolbar() {
@@ -54,13 +60,19 @@ class SingleChatFragment(private val contact: CommonModel) :
             initInfoToolbar()
         }
 
-        mRefUser = REF_DATABASE_ROOT.child(NODE_USERS).child(contact.id)
+        mRefUser = REF_DATABASE_ROOT.child(
+            NODE_USERS
+        ).child(contact.id)
         mRefUser.addValueEventListener(mListenerInfoToolbar)
         chat_btn_send_message.setOnClickListener {
             val message = chat_input_message.text.toString()
             if (message.isEmpty()) {
                 showToast("Введите сообщение")
-            } else sendMessage(message, contact.id, TYPE_TEXT) {
+            } else sendMessage(
+                message,
+                contact.id,
+                TYPE_TEXT
+            ) {
                 chat_input_message.setText("")
             }
         }

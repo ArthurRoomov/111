@@ -4,7 +4,6 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.view.View
 import android.widget.ImageView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.AccountHeaderBuilder
@@ -19,7 +18,7 @@ import com.proba.telegram3.R
 import com.proba.telegram3.ui.fragments.ContactsFragment
 import com.proba.telegram3.ui.fragments.SettingsFragment
 import com.proba.telegram3.utilits.APP_ACTIVITY
-import com.proba.telegram3.utilits.USER
+import com.proba.telegram3.database.USER
 import com.proba.telegram3.utilits.downloadAndSetImage
 import com.proba.telegram3.utilits.replaceFragment
 
@@ -122,8 +121,8 @@ class AppDrawer {
 
     private fun clickToItem(position:Int) {
         when (position) {
-            4 -> APP_ACTIVITY.replaceFragment(SettingsFragment())
-            5 -> APP_ACTIVITY.replaceFragment(ContactsFragment())
+            4 -> replaceFragment(SettingsFragment())
+            5 -> replaceFragment(ContactsFragment())
         }
 
     }

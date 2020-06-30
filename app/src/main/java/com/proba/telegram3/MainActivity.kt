@@ -5,9 +5,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
-import com.proba.telegram3.activities.RegisterActivity
+import com.proba.telegram3.database.AUTH
+import com.proba.telegram3.database.initFirebase
+import com.proba.telegram3.database.initUser
 import com.proba.telegram3.databinding.ActivityMainBinding
-import com.proba.telegram3.ui.fragments.ChatsFragment
+import com.proba.telegram3.ui.fragments.MainFragment
+import com.proba.telegram3.ui.fragments.register.EnterPhoneNumberFragment
 import com.proba.telegram3.ui.objects.AppDrawer
 import com.proba.telegram3.utilits.*
 import kotlinx.coroutines.CoroutineScope
@@ -38,16 +41,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
-
     private fun initFunc() {
         /*Функция инициализирует функциональность приложения */
+        setSupportActionBar(mToolbar)
         if (AUTH.currentUser != null) {
-            setSupportActionBar(mToolbar)
+
             mAppDrawer.create()
-            replaceFragment(ChatsFragment(), false)
+            replaceFragment(MainFragment(), false)
         } else {
-            replaceActivity(RegisterActivity())
+            replaceFragment(EnterPhoneNumberFragment(),false)
         }
     }
 
